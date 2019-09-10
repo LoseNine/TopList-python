@@ -3,7 +3,7 @@
 
 **用Python复现Go语言的TopList，使用python语言编写的异步爬虫**
 
-![1.png](https://github.com/LoseNine/pyTopList/blob/master/templates/imgs/1.PNG)
+![1.png](https://github.com/LoseNine/pyTopList/blob/master/static/imgs/1.PNG)
 ### 安装教程
  
 1. 创建MYSQL数据库，如 `toplist`
