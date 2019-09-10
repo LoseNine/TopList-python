@@ -90,7 +90,7 @@ class CrawlData:
                 if title and url:
                     url = parse.urljoin('https://www.v2ex.com/', url[1])
                     print(title[1],url)
-                    threadpool.submit(Hot.addHot, title=str(title), url=str(url), block='V3EX', content='')
+                    threadpool.submit(Hot.addHot, title=str(title[0]), url=str(url), block='V3EX', content='')
                     #Hot.addHot(title=str(title[0]),url=str(url),block='V3EX',content='')
         else:
             print('GetV3EX Error Done')

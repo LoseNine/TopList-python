@@ -5,7 +5,9 @@ import os
 
 base=os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
-app = Flask(__name__,template_folder=base+'\\templates')
+app = Flask(__name__,
+            template_folder=base+'\\templates',
+            static_folder=base+'\\static')
 app.config.from_object(config.Config)
 
 db=SQLAlchemy(app)
