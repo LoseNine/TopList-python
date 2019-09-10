@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>鱼塘热榜</title>
+	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/htmleaf-demo.css') }}"><!--演示页面样式，使用时可以不引用-->
+	<style type="text/css">
+		.demo{
+			padding: 2em 0;
+		}
+		a:hover,a:focus{
+		    text-decoration: none;
+		    outline: none;
+		}
+		.tab .nav-tabs{
+		    border: none;
+		    border-bottom: 2px solid #079fc9;
+		    margin: 0;
+		}
+		.tab .nav-tabs li a{
+		    padding: 10px 20px;
+		    margin: 0 10px -1px 0;
+		    font-size: 17px;
+		    font-weight: 600;
+		    color: #293241;
+		    text-transform: uppercase;
+		    border: 2px solid #e6e5e1;
+		    border-bottom: none;
+		    border-radius: 5px 5px 0 0;
+		    z-index: 1;
+		    position: relative;
+		    transition: all 0.3s ease 0s;
+		}
+		.tab .nav-tabs li a:hover,
+		.tab .nav-tabs li.active a{
+		    background: #fff;
+		    color: #079fc9;
+		    border: 2px solid #079fc9;
+		    border-bottom-color: transparent;
+		}
+		.tab .nav-tabs li a:before{
+		    content: "";
+		    display: block;
+		    height: 2px;
+		    background: #fff;
+		    position: absolute;
+		    bottom: -2px;
+		    left: 0;
+		    right: 0;
+		    transform: scaleX(0);
+		    transition: all 0.3s ease-in-out 0s;
+		}
+		.tab .nav-tabs li.active a:before,
+		.tab .nav-tabs li a:hover:before{ transform: scaleX(1); }
+		.tab .tab-content{
+		    padding: 10px;
+		    font-size: 17px;
+		    color: #6f6f6f;
+		    line-height: 30px;
+		    letter-spacing: 1px;
+		    position: relative;
+		}
+		@media only screen and (max-width: 479px){
+		    .tab .nav-tabs{ border: none; }
+		    .tab .nav-tabs li{
+		        width: 100%;
+		        text-align: center;
+		        margin-bottom: 15px;
+		    }
+		    .tab .nav-tabs li a{
+		        margin: 0;
+		        border-bottom: 2px solid transparent;
+		    }
+		    .tab .nav-tabs li a:before{
+		        content: "";
+		        width: 100%;
+		        height: 2px;
+		        background: #079fc9;
+		        position: absolute;
+		        bottom: -2px;
+		        left: 0;
+		    }
+		}
+	</style>
+</head>
+<body>
+	<div class="htmleaf-container">
+		<header class="htmleaf-header head">
+			<h1 align="center">鱼塘热榜 <span>TopList</span></h1>
+		</header>
+		
+	    <div class="demo">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-md-offset-3 col-md-6">
+	                    <div class="tab" role="tabpanel">
+	                        <!-- Nav tabs -->
+	                        <ul class="nav nav-tabs" role="tablist">
+                                {% for block in blocks %}
+	                                <li role="presentation active"><a href="#{{block.name}}" role="tab" data-toggle="tab">{{block.name}}</a></li>
+	                            {% endfor %}
+                            </ul>
+	                        <!-- Tab panes -->
+	                        <div class="tab-content tabs">
+								{% for block in blocks %}
+	                            <div role="tabpanel" class="tab-pane fade in active" id="{{ block.name }}">
+	                                <h3>{{ block.name }}</h3>
+                                    <ul>
+                                        {% for hot in block.hots %}
+                                            <li><a href="{{ hot.url }}">{{ hot.title }}</a></li>
+                                            {% if hot.content %}
+                                                <p>{{ hot.content[:50] }}</p>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+
+								</div>
+								{% endfor %}
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	
+	<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+	<!--<script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"><\/script>')</script>-->
+    <script src="{{ url_for('static',filename='js/jquery-1.11.0.min.js') }}"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
