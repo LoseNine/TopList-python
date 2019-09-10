@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .ce{
+        width: 50%;
+        margin: 1px auto;
+    }
+    .no-line{
+        text-decoration: none;
+    }
+    ul li{
+        list-style: none;
+    }
+</style>
+<body>
+<h1 align="center">鱼塘热榜</h1>
+<hr>
+<div class="ce">
+    {% for b in blocks %}
+    <h2>{{ b.name }}</h2>
+    <ul>{% for h in b.hots %}
+        <li>
+            {{ loop.index }}.&nbsp<a href="{{ h.url }}" class="no-line ">{{ h.title }}</a>
+            {% if h.content %}
+                <p>introduce：{{ h.content }}</p>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    <hr>
+    {% endfor %}
+</div>
+
+</body>
+</html>
